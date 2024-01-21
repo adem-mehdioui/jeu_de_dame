@@ -54,8 +54,6 @@ def dessiner_plateau():
                 piece_color = (255, 0, 0) if piece.color == "red" else (168, 113, 50)
                 pygame.draw.circle(fenetre, piece_color, (colonne * TAILLE_CASE + TAILLE_CASE // 2, ligne * TAILLE_CASE + TAILLE_CASE // 2), TAILLE_CASE // 2 - 5)
 
-
-
 # Function to get valid moves for a checker piece
 def get_valid_moves(board, row, col):
     valid_moves = []
@@ -103,11 +101,11 @@ while True:
         
         mouse_x, mouse_y = pygame.mouse.get_pos()
 
-        
+
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        
+
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
 
@@ -117,6 +115,7 @@ while True:
 
             print("les positions de la case cliquée sont ", board_x, "et ", board_y)
 
+<<<<<<< HEAD
     
              # Handle mouse click and update checker piece position
             if 0 <= board_y < len(initial_board) and 0 <= board_x < len(initial_board[0]):
@@ -128,7 +127,25 @@ while True:
 
 
                     
+=======
+
+            # Handle mouse click and update checker piece position
+            if 0 <= board_y < len(initial_board) and 0 <= board_x < len(initial_board[0]):
+
+                valid_moves = get_valid_moves(initial_board, board_y, board_x)
+                print("Les mouvements valides sont :", valid_moves)
+                draw_valid_moves(valid_moves)
+
+
+    dessiner_plateau()
+
+
+>>>>>>> f3f3b517b354d28dd212467397b0fe263726088f
     pygame.display.flip()
 
 
 
+<<<<<<< HEAD
+=======
+#%%
+>>>>>>> f3f3b517b354d28dd212467397b0fe263726088f
