@@ -91,13 +91,16 @@ def get_valid_moves(board, row, col):
 # Function to draw valid move indicators
 def draw_valid_moves(valid_moves):
     for move in valid_moves:
-        pygame.draw.rect(fenetre, (0, 255, 0, 128), (move[1] * TAILLE_CASE, move[0] * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE))
+        pygame.draw.rect(fenetre, (0, 255, 0, 255), (move[1] * TAILLE_CASE, move[0] * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE))
 
 
 
 # Boucle principale du jeu
 while True:
+    dessiner_plateau()
+    
     for event in pygame.event.get():
+        
         mouse_x, mouse_y = pygame.mouse.get_pos()
 
         
@@ -121,9 +124,11 @@ while True:
                         valid_moves = get_valid_moves(initial_board, board_y, board_x)
                         print("Les mouvements valides sont :", valid_moves)
                         draw_valid_moves(valid_moves)
+                        pygame.time.delay(1000)  # Delay for 1000 milliseconds (1 second)
+
 
                     
-    dessiner_plateau()
-
-
     pygame.display.flip()
+
+
+
