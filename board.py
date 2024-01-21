@@ -93,6 +93,9 @@ def draw_valid_moves(valid_moves):
 
 
 
+# Store the selected piece position
+selected_piece = None
+
 # Boucle principale du jeu
 while True:
     dessiner_plateau()
@@ -115,37 +118,28 @@ while True:
 
             print("les positions de la case cliquée sont ", board_x, "et ", board_y)
 
-<<<<<<< HEAD
     
              # Handle mouse click and update checker piece position
             if 0 <= board_y < len(initial_board) and 0 <= board_x < len(initial_board[0]):
-        
+                    if selected_piece is None:
+
+                        # Select the checker piece if not already selected
+                        selected_piece = (board_y, board_x)
                         valid_moves = get_valid_moves(initial_board, board_y, board_x)
                         print("Les mouvements valides sont :", valid_moves)
-                        draw_valid_moves(valid_moves)
-                        pygame.time.delay(1000)  # Delay for 1000 milliseconds (1 second)
 
+                    else:
+                        # Move the selected checker piece to the clicked position
+                        if (board_y, board_x) in valid_moves:
+                            initial_board[board_y][board_x] = initial_board[selected_piece[0]][selected_piece[1]]
+                            initial_board[selected_piece[0]][selected_piece[1]] = None
+                            selected_piece = None
+                            draw_valid_moves(valid_moves)
+                            pygame.time.delay(1000)  # Delay for 1000 milliseconds (1 second)
+                        
 
                     
-=======
-
-            # Handle mouse click and update checker piece position
-            if 0 <= board_y < len(initial_board) and 0 <= board_x < len(initial_board[0]):
-
-                valid_moves = get_valid_moves(initial_board, board_y, board_x)
-                print("Les mouvements valides sont :", valid_moves)
-                draw_valid_moves(valid_moves)
-
-
-    dessiner_plateau()
-
-
->>>>>>> f3f3b517b354d28dd212467397b0fe263726088f
     pygame.display.flip()
 
 
 
-<<<<<<< HEAD
-=======
-#%%
->>>>>>> f3f3b517b354d28dd212467397b0fe263726088f
