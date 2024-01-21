@@ -1,8 +1,9 @@
 from checker_piece import checkerPiece
 
-class King (checkerPiece):
-    def __init__(self, joueur, ligne, colonne):
-        super().__init__(joueur, ligne, colonne)
-        self.est_dame = False
+class King(checkerPiece):
+    def __init__(self, color, row, col):
+        super().__init__(color, row, col)
+        self.is_king = True
+
 
         
