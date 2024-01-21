@@ -127,6 +127,7 @@ while True:
                         selected_piece = (board_y, board_x)
                         valid_moves = get_valid_moves(initial_board, board_y, board_x)
                         print("Les mouvements valides sont :", valid_moves)
+                        
 
                     else:
                         # Move the selected checker piece to the clicked position
