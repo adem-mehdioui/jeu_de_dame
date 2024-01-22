@@ -13,7 +13,7 @@ pygame.init()
 
 # Définition des couleurs
 BLANC = (255, 255, 255)
-NOIR = (0, 0, 0)
+BROWN = (67, 39, 15)
 
 
 # Taille de la fenêtre et des cases du plateau
@@ -34,9 +34,9 @@ initial_board = [
     [None, checkerPiece("brown"), None, checkerPiece("brown"), None, checkerPiece("brown"), None, checkerPiece("brown")],
     [None, None, None, None, None, None, None, None],
     [None, None, None, None, None, None, None, None],
-    [checkerPiece("red"), None, checkerPiece("red"), None, checkerPiece("red"), None, checkerPiece("red"), None],
-    [None, checkerPiece("red"), None, checkerPiece("red"), None, checkerPiece("red"), None, checkerPiece("red")],
-    [checkerPiece("red"), None, checkerPiece("red"), None, checkerPiece("red"), None, checkerPiece("red"), None],
+    [checkerPiece("black"), None, checkerPiece("black"), None, checkerPiece("black"), None, checkerPiece("black"), None],
+    [None, checkerPiece("black"), None, checkerPiece("black"), None, checkerPiece("black"), None, checkerPiece("black")],
+    [checkerPiece("black"), None, checkerPiece("black"), None, checkerPiece("black"), None, checkerPiece("black"), None],
 ]
 
 
@@ -46,12 +46,12 @@ initial_board = [
 def dessiner_plateau():
     for ligne in range(8):
         for colonne in range(8):
-            couleur_case = BLANC if (ligne + colonne) % 2 == 0 else NOIR
+            couleur_case = BLANC if (ligne + colonne) % 2 == 0 else BROWN
             pygame.draw.rect(fenetre, couleur_case, (colonne * TAILLE_CASE, ligne * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE))
 
             piece = initial_board[ligne][colonne]
             if piece:
-                piece_color = (255, 0, 0) if piece.color == "red" else (168, 113, 50)
+                piece_color = (16, 16, 16) if piece.color == "black" else (168, 113, 50)
                 pygame.draw.circle(fenetre, piece_color, (colonne * TAILLE_CASE + TAILLE_CASE // 2, ligne * TAILLE_CASE + TAILLE_CASE // 2), TAILLE_CASE // 2 - 5)
 
 # Function to get valid moves for a checker piece
@@ -63,7 +63,7 @@ def get_valid_moves(board, row, col):
         print(f"Piece present at ({row}, {col}): {type(board[row][col])}, color: {board[row][col].color}")
 
         # Check if it's an instance of checkerPiece with the correct color
-        if isinstance(board[row][col], checkerPiece) and board[row][col].color == "red":
+        if isinstance(board[row][col], checkerPiece) and board[row][col].color == "black":
             print("Valid moves logic goes here")
 
             # Add your logic for valid moves here
