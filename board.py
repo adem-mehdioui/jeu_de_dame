@@ -64,7 +64,7 @@ def get_valid_moves(board, row, col):
 
         # Check if it's an instance of checkerPiece with the correct color
         if isinstance(board[row][col], checkerPiece) and board[row][col].color == "black":
-            print("Valid moves logic goes here")
+            print("Valid moves logic goes here for black pieces")
 
             # Add your logic for valid moves here
             if row - 1 >= 0 and col - 1 >= 0 and board[row - 1][col - 1] is None:
@@ -128,6 +128,7 @@ while True:
                         valid_moves = get_valid_moves(initial_board, board_y, board_x)
                         print("Les mouvements valides sont :", valid_moves)
                         
+                        
 
                     else:
                         # Move the selected checker piece to the clicked position
@@ -135,9 +136,9 @@ while True:
                             initial_board[board_y][board_x] = initial_board[selected_piece[0]][selected_piece[1]]
                             initial_board[selected_piece[0]][selected_piece[1]] = None
                             selected_piece = None
-                            draw_valid_moves(valid_moves)
-                            pygame.time.delay(1000)  # Delay for 1000 milliseconds (1 second)
-                        
+                           
+                    draw_valid_moves(valid_moves)
+                    pygame.time.delay(1000)  # Delay for 1000 milliseconds (1 second)
 
                     
     pygame.display.flip()
