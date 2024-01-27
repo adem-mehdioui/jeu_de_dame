@@ -1,30 +1,9 @@
-from checker_piece import checkerPiece  
-
+# player.py
 
 class Player:
+    def __init__(self, name):
+        self.name = name
 
-    def __init__(self, nom, couleur):
-        self.nom = nom
-        self.couleur = couleur
-        self.pions = []
-
-    def initialiser_pions(self, plateau):
-        for ligne in range(3):
-            for colonne in range(8):
-                if (ligne + colonne) % 2 == 1:
-                    pion = Pion(self, ligne, colonne)
-                    self.pions.append(pion)
-                    plateau.set_pion(pion)
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def switch_turn(self):
+        # You can add additional logic here if needed
+        pass

@@ -1,8 +1,19 @@
 import pygame
 import sys
-
+from player import Player
 from checker_piece import checkerPiece
-from checker_piece import update_position
+
+
+# Define players
+brown_player = Player("brown")
+black_player = Player("black")
+
+# Define initial player
+current_player = brown_player
+
+print(f"{current_player.name} turn")
+
+
 
 
 
@@ -123,10 +134,17 @@ while True:
             if 0 <= board_y < len(initial_board) and 0 <= board_x < len(initial_board[0]):
                     if selected_piece is None:
 
+                         # Select the checker piece if not already selected
+                        piece = initial_board[board_y][board_x]
+
+                        if piece and piece.color == current_player.name:
+
+
                         # Select the checker piece if not already selected
-                        selected_piece = (board_y, board_x)
-                        valid_moves = get_valid_moves(initial_board, board_y, board_x)
-                        print("Les mouvements valides sont :", valid_moves)
+                            selected_piece = (board_y, board_x)
+
+                            valid_moves = get_valid_moves(initial_board, board_y, board_x)
+                            print("Les mouvements valides sont :", valid_moves)
                         
                         
 
@@ -136,9 +154,15 @@ while True:
                             initial_board[board_y][board_x] = initial_board[selected_piece[0]][selected_piece[1]]
                             initial_board[selected_piece[0]][selected_piece[1]] = None
                             selected_piece = None
-                           
-                    draw_valid_moves(valid_moves)
-                    pygame.time.delay(1000)  # Delay for 1000 milliseconds (1 second)
+                            current_player = black_player if current_player == brown_player else brown_player  # Switch turns
+                            print(f"{current_player.name} turn")
+
+                            # Draw the board after a move
+                            dessiner_plateau()
+
+
+                    #draw_valid_moves(valid_moves)
+                    #pygame.time.delay(1000)  # Delay for 1000 milliseconds (1 second)
 
                     
     pygame.display.flip()
