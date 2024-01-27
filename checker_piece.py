@@ -9,7 +9,7 @@ class checkerPiece:
 
 
 
-def update_position(self, new_row, new_col):
+    def update_position(self, new_row, new_col):
         self.row = new_row
         self.col = new_col
 
