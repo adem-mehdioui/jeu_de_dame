@@ -4,7 +4,7 @@ class checkerPiece:
         self.color = color
         self.is_king = False
 
-    def make_king(self):
+    def promote_to_king(self):
         self.is_king = True
 
 

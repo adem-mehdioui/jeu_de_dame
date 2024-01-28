@@ -99,11 +99,17 @@ def get_valid_moves(board, row, col):
                     valid_moves.append((row - 1, col - 1))
                 if row - 1 >= 0 and col + 1 < len(board[0]) and board[row - 1][col + 1] is None:
                     valid_moves.append((row - 1, col + 1))
+                if row == 0:
+                    board[row][col].promote_to_king()
+                    print(f"The checker piece at ({row}, {col}) is in the first row.")
             elif board[row][col].color == "brown":
                 if row + 1 < len(board) and col - 1 >= 0 and board[row + 1][col - 1] is None:
                     valid_moves.append((row + 1, col - 1))
                 if row + 1 < len(board) and col + 1 < len(board[0]) and board[row + 1][col + 1] is None:
                     valid_moves.append((row + 1, col + 1))
+                if row == len(board) - 1:
+                    board[row][col].promote_to_king()
+                
         else:
             print("Not an instance of checkerPiece")
 
