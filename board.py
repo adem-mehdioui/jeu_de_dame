@@ -143,7 +143,7 @@ while True:
             board_x = mouse_x // TAILLE_CASE
             board_y = mouse_y // TAILLE_CASE
 
-            print("les positions de la case cliquée sont ", board_x, "et ", board_y)
+            
 
             # Handle mouse click and update checker piece position
             if 0 <= board_y < len(initial_board) and 0 <= board_x < len(initial_board[0]):
@@ -155,7 +155,7 @@ while True:
                         # Select the checker piece if not already selected
                         selected_piece = (board_y, board_x)
                         valid_moves = get_valid_moves(initial_board, board_y, board_x)
-                        print("Les mouvements valides sont :", valid_moves)
+                        
                     
                 else:
                     # Move the selected checker piece to the clicked position
