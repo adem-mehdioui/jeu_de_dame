@@ -129,6 +129,9 @@ def draw_valid_moves(valid_moves):
 # Store the selected piece position
 selected_piece = None
 
+# Create a clock object to control the frame rate
+clock = pygame.time.Clock()
+
 
 # Boucle principale du jeu
 while True:
@@ -161,6 +164,21 @@ while True:
                         # Select the checker piece if not already selected
                         selected_piece = (board_y, board_x)
                         valid_moves = get_valid_moves(initial_board, board_y, board_x)
+                                        
+
+
+
+                         # Check if there are capturing moves
+                        capturing_moves = [move for move in valid_moves if abs(move[0] - selected_piece[0]) == 2]
+
+                        
+                        if capturing_moves:
+                            valid_moves = capturing_moves  # Restrict to capturing moves only
+                            draw_valid_moves(valid_moves)
+                        else:
+                            draw_valid_moves(valid_moves)
+
+                        
                         
                     
                 else:
@@ -201,4 +219,7 @@ while True:
                         dessiner_plateau()
 
     pygame.display.flip()
+
+     # Limit the frame rate to 30 frames per second
+    clock.tick(8)
 
