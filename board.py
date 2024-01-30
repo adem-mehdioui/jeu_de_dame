@@ -184,39 +184,44 @@ while True:
                 else:
                     # Move the selected checker piece to the clicked position
                     if (board_y, board_x) in valid_moves:
-                        # Perform the deletion of the captured pawn here
-                        # You can use the same logic as in the get_valid_moves function
-                        if current_player.name == "brown":
-                            capture_directions = [(1, -1), (1, 1)]  # Capture down-left and down-right for brown
 
-                        else:
-                            capture_directions = [(-1, -1), (-1, 1)]  # Capture up-left and up-right for black
+                            capturing_moves = [move for move in valid_moves if abs(move[0] - selected_piece[0]) == 2]
 
+                            if capturing_moves:
 
-                        for dir_row, dir_col in capture_directions:
-                            capture_row = selected_piece[0] + dir_row
-                            capture_col = selected_piece[1] + dir_col
-                            target_row = board_y
-                            target_col = board_x
+                                # Perform the deletion of the captured pawn here
+                                for move in capturing_moves:
+                                    capture_row, capture_col = (
+                                        (selected_piece[0] + move[0]) // 2,
+                                        (selected_piece[1] + move[1]) // 2,
+                                    )
 
-                            # Check if the target square is empty and the intermediate square has an opponent checker piece
-                            if 0 <= capture_row < len(initial_board) and 0 <= capture_col < len(initial_board[0]):
-                                if (
-                                    initial_board[capture_row][capture_col] is not None
-                                    and initial_board[capture_row][capture_col].color != initial_board[selected_piece[0]][selected_piece[1]].color
-                                    and initial_board[target_row][target_col] is None
-                                ):
                                     # Remove the captured piece from the board
                                     initial_board[capture_row][capture_col] = None
 
-                        initial_board[board_y][board_x] = initial_board[selected_piece[0]][selected_piece[1]]
-                        initial_board[selected_piece[0]][selected_piece[1]] = None
-                        selected_piece = None
-                        current_player = black_player if current_player == brown_player else brown_player  # Switch turns
-                        print(f"{current_player.name} turn")
+                                initial_board[board_y][board_x] = initial_board[selected_piece[0]][selected_piece[1]]
+                                initial_board[selected_piece[0]][selected_piece[1]] = None
+                                selected_piece = None
+                                current_player = black_player if current_player == brown_player else brown_player  # Switch turns
+                                print(f"{current_player.name} turn")
 
-                        # Draw the board after a move
-                        dessiner_plateau()
+
+                                # Draw the board after a move
+                                dessiner_plateau()
+
+
+
+                            else: 
+
+                                # Regular move, the target square is empty
+                                initial_board[board_y][board_x] = initial_board[selected_piece[0]][selected_piece[1]]
+                                initial_board[selected_piece[0]][selected_piece[1]] = None
+                                selected_piece = None
+                                current_player = black_player if current_player == brown_player else brown_player  # Switch turns
+                                print(f"{current_player.name} turn")
+
+                                # Draw the board after a move
+                                dessiner_plateau()
 
     pygame.display.flip()
 

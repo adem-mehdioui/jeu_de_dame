@@ -8,10 +8,4 @@ class checkerPiece:
         self.is_king = True
 
 
-
-    def update_position(self, new_row, new_col):
-        self.row = new_row
-        self.col = new_col
-
-
         
