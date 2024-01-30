@@ -119,18 +119,20 @@ def get_valid_moves(board, row, col):
 
 
 
-# Function to draw valid move indicators
+# Function to draw valid move indicators as white balls
 def draw_valid_moves(valid_moves):
     for move in valid_moves:
-        pygame.draw.rect(fenetre, (0, 255, 0, 255), (move[1] * TAILLE_CASE, move[0] * TAILLE_CASE, TAILLE_CASE, TAILLE_CASE))
-
+        pygame.draw.circle(
+            fenetre,  # Surface to draw on
+            (255, 255, 255),  # Color of the circle (white in RGB)
+            (move[1] * TAILLE_CASE + TAILLE_CASE // 2, move[0] * TAILLE_CASE + TAILLE_CASE // 2),  # Center coordinates
+            TAILLE_CASE // 4 - 5  # Radius of the circle
+        )
 
 
 # Store the selected piece position
 selected_piece = None
 
-# Create a clock object to control the frame rate
-clock = pygame.time.Clock()
 
 
 # Boucle principale du jeu
@@ -156,16 +158,13 @@ while True:
 
             # Handle mouse click and update checker piece position
             if 0 <= board_y < len(initial_board) and 0 <= board_x < len(initial_board[0]):
-                if selected_piece is None:
-                    # Select the checker piece if not already selected
+                
                     piece = initial_board[board_y][board_x]
 
                     if piece and piece.color == current_player.name:
                         # Select the checker piece if not already selected
                         selected_piece = (board_y, board_x)
                         valid_moves = get_valid_moves(initial_board, board_y, board_x)
-                                        
-
 
 
                          # Check if there are capturing moves
@@ -174,16 +173,16 @@ while True:
                         
                         if capturing_moves:
                             valid_moves = capturing_moves  # Restrict to capturing moves only
-                            draw_valid_moves(valid_moves)
-                        else:
-                            draw_valid_moves(valid_moves)
+
+
+    # Draw the valid moves continuously
+    if selected_piece is not None:
+            draw_valid_moves(valid_moves)
+                        
 
                         
-                        
-                    
-                else:
                     # Move the selected checker piece to the clicked position
-                    if (board_y, board_x) in valid_moves:
+            if (board_y, board_x) in valid_moves:
 
                             capturing_moves = [move for move in valid_moves if abs(move[0] - selected_piece[0]) == 2]
 
@@ -206,8 +205,7 @@ while True:
                                 print(f"{current_player.name} turn")
 
 
-                                # Draw the board after a move
-                                dessiner_plateau()
+                                
 
 
 
@@ -220,11 +218,13 @@ while True:
                                 current_player = black_player if current_player == brown_player else brown_player  # Switch turns
                                 print(f"{current_player.name} turn")
 
-                                # Draw the board after a move
-                                dessiner_plateau()
+              
+
+                                
 
     pygame.display.flip()
 
-     # Limit the frame rate to 30 frames per second
-    clock.tick(8)
+
+    
+     
 
